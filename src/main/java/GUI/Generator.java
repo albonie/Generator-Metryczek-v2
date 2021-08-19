@@ -67,7 +67,7 @@ public class Generator extends JFrame {
 
             if (!index.error.equals("error")) {
 
-
+                int licznik = 0, wiersz = 0;
                 try {
                     ConverterProperties properties = new ConverterProperties();
                     properties.setBaseUri(BASEURI);
@@ -76,7 +76,7 @@ public class Generator extends JFrame {
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf);
 
-                    int licznik = 0;
+
                     for (int i = 1; i <= maxRows; i++) {
 
                         if (!XLSXConnection.getKCZNIE(i).equals("Nie") ||
@@ -84,23 +84,23 @@ public class Generator extends JFrame {
                                 !XLSXConnection.getSSNIE(i).equals("Nie") ||
                                 !XLSXConnection.getSONIE(i).equals("Nie") ||
                                 !XLSXConnection.getOPTYKANIE(i).equals("Nie")) {
-                            PDFMaker.MakePDF(document, GeneratorHTML.WARIANT_DLUGI, XLSXConnection.getImie(i), XLSXConnection.getNazwisko(i), XLSXConnection.getKlub(i),
+                            PDFMaker.MakePDF(document, GeneratorHTML.WARIANT_DLUGI, XLSXConnection.getNazwisko(i), XLSXConnection.getImie(i), XLSXConnection.getKlub(i),
                                     i, Data.dataDzienPierwszy,
                                     XLSXConnection.getKCZ(i), XLSXConnection.kczW, XLSXConnection.kczK,
                                     XLSXConnection.getKCO(i), XLSXConnection.kczoW, XLSXConnection.kczoK,
+                                    XLSXConnection.getOPTYKA(i), XLSXConnection.optykaW, XLSXConnection.optykaK,
                                     XLSXConnection.getSS(i), XLSXConnection.ssW, XLSXConnection.ssK,
-                                    XLSXConnection.getSO(i), XLSXConnection.soW, XLSXConnection.soK,
-                                    XLSXConnection.getOPTYKA(i), XLSXConnection.optykaW, XLSXConnection.optykaK);
+                                    XLSXConnection.getSO(i), XLSXConnection.soW, XLSXConnection.soK);
                             licznik++;
                         }
                         if (!XLSXConnection.getKSPNIE(i).equals("Nie") ||
                                 !XLSXConnection.getPSPNIE(i).equals("Nie") ||
                                 !XLSXConnection.getPCZNIE(i).equals("Nie")) {
-                            PDFMaker.MakePDF(document, GeneratorHTML.WARIANT_KROTKI, XLSXConnection.getImie(i), XLSXConnection.getNazwisko(i), XLSXConnection.getKlub(i),
+                            PDFMaker.MakePDF(document, GeneratorHTML.WARIANT_KROTKI, XLSXConnection.getNazwisko(i), XLSXConnection.getImie(i), XLSXConnection.getKlub(i),
                                     i, Data.dataDzienDrugi,
-                                    XLSXConnection.getKSP(i), XLSXConnection.kspW, XLSXConnection.kspK,
                                     XLSXConnection.getPSP(i), XLSXConnection.pspW, XLSXConnection.pspK,
-                                    XLSXConnection.getPCZ(i), XLSXConnection.pczW, XLSXConnection.pczK);
+                                    XLSXConnection.getPCZ(i), XLSXConnection.pczW, XLSXConnection.pczK,
+                                    XLSXConnection.getKSP(i), XLSXConnection.kspW, XLSXConnection.kspK);
                             licznik++;
                         }
                         if (licznik % 2 == 0) {
@@ -108,13 +108,18 @@ public class Generator extends JFrame {
                         }
                         tekst1.setText("Przetworzono " + i + " z " + maxRows + " osób");
                         bar.setValue(i);
-
+                        wiersz=i;
                     }
                     document.close();
 
                 } catch (IOException e) {
                     index.gdzie = "data";
                     new PlikNieWybrany("Plik z metryczkami jest otwarty w innym programie, zamknij go i spróbuj otworzyc ponownie", "Błąd otwierania pliku");
+                    dispose();
+                    done = false;
+                }
+                catch (NullPointerException e) {
+                    new PlikNieWybrany("Znaleziono pustą komórkę w wierszu: "+(wiersz+2), "Pusta komórka");
                     dispose();
                     done = false;
                 }

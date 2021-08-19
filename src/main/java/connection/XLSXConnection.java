@@ -42,11 +42,11 @@ public class XLSXConnection {
         return value;
     }
 
-    public static String getNazwisko(int i) {
+    public static String getImie(int i) {
         return ReadCellData(i, 3);
     }
 
-    public static String getImie(int i) {
+    public static String getNazwisko(int i) {
         return ReadCellData(i, 4);
     }
 
@@ -90,10 +90,28 @@ public class XLSXConnection {
         return ReadCellData(i, 7);
     }
 
-    public static String getSS(int i) {
-        ssK = ssW = "-";
+    public static String getOPTYKA(int i) {
+        optykaK = optykaW = "-";
         if (!ReadCellData(i, 8).equals("Nie")) {
             if (!ReadCellData(i, 8).equals("Tak, broń i amunicja własna")) {
+                optykaW = " ";
+                optykaK = "X";
+            } else {
+                optykaW = "X";
+                optykaK = " ";
+            }
+        }
+        return "Kcz OPTYKA";
+    }
+
+    public static String getOPTYKANIE(int i) {
+        return ReadCellData(i, 8);
+    }
+
+    public static String getSS(int i) {
+        ssK = ssW = "-";
+        if (!ReadCellData(i, 9).equals("Nie")) {
+            if (!ReadCellData(i, 9).equals("Tak, broń i amunicja własna")) {
                 ssW = " ";
                 ssK = "X";
             } else {
@@ -105,13 +123,13 @@ public class XLSXConnection {
     }
 
     public static String getSSNIE(int i) {
-        return ReadCellData(i, 8);
+        return ReadCellData(i, 9);
     }
 
     public static String getSO(int i) {
         soK = soW = "-";
-        if (!ReadCellData(i, 9).equals("Nie")) {
-            if (!ReadCellData(i, 9).equals("Tak, broń i amunicja własna")) {
+        if (!ReadCellData(i, 10).equals("Nie")) {
+            if (!ReadCellData(i, 10).equals("Tak, broń i amunicja własna")) {
                 soW = " ";
                 soK = "X";
             } else {
@@ -123,13 +141,13 @@ public class XLSXConnection {
     }
 
     public static String getSONIE(int i) {
-        return ReadCellData(i, 9);
+        return ReadCellData(i, 10);
     }
 
     public static String getKSP(int i) {
         kspW = kspK = "-";
-        if (!ReadCellData(i, 10).equals("Nie")) {
-            if (!ReadCellData(i, 10).equals("Tak, broń i amunicja własna")) {
+        if (!ReadCellData(i, 11).equals("Nie")) {
+            if (!ReadCellData(i, 11).equals("Tak, broń i amunicja własna")) {
                 kspW = " ";
                 kspK = "X";
             } else {
@@ -141,13 +159,13 @@ public class XLSXConnection {
     }
 
     public static String getKSPNIE(int i) {
-        return ReadCellData(i, 10);
+        return ReadCellData(i, 11);
     }
 
     public static String getPSP(int i) {
         pspK = pspW = "-";
-        if (!ReadCellData(i, 11).equals("Nie")) {
-            if (!ReadCellData(i, 11).equals("Tak, broń i amunicja własna")) {
+        if (!ReadCellData(i, 12).equals("Nie")) {
+            if (!ReadCellData(i, 12).equals("Tak, broń i amunicja własna")) {
                 pspW = " ";
                 pspK = "X";
             } else {
@@ -159,13 +177,13 @@ public class XLSXConnection {
     }
 
     public static String getPSPNIE(int i) {
-        return ReadCellData(i, 11);
+        return ReadCellData(i, 12);
     }
 
     public static String getPCZ(int i) {
         pczK = pczW = "-";
-        if (!ReadCellData(i, 12).equals("Nie")) {
-            if (!ReadCellData(i, 12).equals("Tak, broń i amunicja własna")) {
+        if (!ReadCellData(i, 13).equals("Nie")) {
+            if (!ReadCellData(i, 13).equals("Tak, broń i amunicja własna")) {
                 pczW = " ";
                 pczK = "X";
             } else {
@@ -177,26 +195,10 @@ public class XLSXConnection {
     }
 
     public static String getPCZNIE(int i) {
-        return ReadCellData(i, 12);
-    }
-
-    public static String getOPTYKA(int i) {
-        optykaK = optykaW = "-";
-        if (!ReadCellData(i, 13).equals("Nie")) {
-            if (!ReadCellData(i, 13).equals("Tak, broń i amunicja własna")) {
-                optykaW = " ";
-                optykaK = "X";
-            } else {
-                optykaW = "X";
-                optykaK = " ";
-            }
-        }
-        return "Optyka";
-    }
-
-    public static String getOPTYKANIE(int i) {
         return ReadCellData(i, 13);
     }
+
+
 
     public static int getRows() {
 

@@ -296,15 +296,15 @@ public class GeneratorHTML {
                         <tr>
                            \s
                            \s
-                            <td class='bezramek'><strong>IMIĘ</strong></td>
-                            <td class='dane1tab'>""").append(imie).append("""
+                            <td class='bezramek'><strong>NAZWISKO</strong></td>
+                            <td class='dane1tab'>""").append(nazwisko).append("""
                 </td>
                 </tr>
                     
                 <tr>
                    \s
-                    <td class='bezramek'><strong>NAZWISKO</strong></td>
-                    <td class='dane1tab'>""").append(nazwisko).append("""
+                    <td class='bezramek'><strong>IMIĘ</strong></td>
+                    <td class='dane1tab'>""").append(imie).append("""
                     </td>
                     </tr>
                 </table>

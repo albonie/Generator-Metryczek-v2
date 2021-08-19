@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class PDFMaker {
-    public static void MakePDF(Document document, int wariant, String imie, String nazwisko, String klub, int numer, String data, String ...vararg) throws IOException {
+    public static void MakePDF(Document document, int wariant, String nazwisko, String imie, String klub, int numer, String data, String ...vararg) throws IOException {
 
         ConverterProperties properties = new ConverterProperties();
         FontProvider provider = new DefaultFontProvider(false, false, false);
@@ -23,7 +23,7 @@ public class PDFMaker {
         provider.addFont(fontProgram, PdfEncodings.IDENTITY_H);
         properties.setFontProvider(provider);
 
-        List<IElement> elements = HtmlConverter.convertToElements(new GeneratorHTML().generateHTMLMetric(wariant, imie, nazwisko, klub, numer, data, vararg), properties);
+        List<IElement> elements = HtmlConverter.convertToElements(new GeneratorHTML().generateHTMLMetric(wariant, nazwisko, imie, klub, numer, data, vararg), properties);
 
 
         for (IElement element : elements) {
